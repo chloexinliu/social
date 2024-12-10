@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= profileUser.username %> - Social Media App</title>
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+    <%- include('partials/navbar') %>
+    <div class="container">
+        <div class="profile-header">
+            <h1>@<%= profileUser.username %></h1>
+            <p class="join-date">Joined: <%= new Date(profileUser.createdAt).toLocaleDateString() %></p>
+            
+            <% if (isOwnProfile) { %>
+                <form action="/users/<%= profileUser.username %>/update-description" method="POST">
+                    <textarea name="description" placeholder="Add a description..."><%= profileUser.description %></textarea>
+                    <button type="submit">Update Description</button>
+                </form>
+            <% } else if (profileUser.description) { %>
+                <p class="description"><%= profileUser.description %></p>
+            <% } %>
+        </div>
+
+        <div class="posts">
+            <% posts.forEach(post => { %>
+                <div class="post">
+                    <div class="post-header">
+                        <span class="date"><%= new Date(post.createdAt).toLocaleString() %></span>
+                    </div>
+                    <div class="post-content"><%= post.content %></div>
+                    <% if (isOwnProfile) { %>
+                        <div class="post-actions">
+                            <form action="/posts/edit/<%= post._id %>" method="POST" style="display: inline;">
+                                <input type="text" name="content" value="<%= post.content %>" required>
+                                <button type="submit">Edit</button>
+                            </form>
+                            <form action="/posts/delete/<%= post._id %>" method="POST" style="display: inline;">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </div>
+                    <% } %>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</body>
+</html> 

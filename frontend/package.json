@@ -1,0 +1,8 @@
+{
+  "name": "social-media-frontend",
+  "version": "1.0.0",
+  "description": "Simple social media app frontend",
+  "dependencies": {
+    "ejs": "^3.1.9"
+  }
+} 

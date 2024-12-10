@@ -1,0 +1,17 @@
+/app (root directory)
+├── backend/
+│   ├── models/
+│   ├── routes/
+│   ├── middleware/
+│   └── server.js
+├── frontend/
+│   ├── public/
+│   └── views/
+│       ├── home.ejs
+│       ├── login.ejs
+│       ├── register.ejs
+│       ├── profile.ejs
+│       └── partials/
+│           └── navbar.ejs
+├── package.json
+└── Procfile 
